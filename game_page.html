@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>HOME.AI</title>
     <script src="js/jquery.min.js"></script>
     <style type="text/css" media="screen">
@@ -74,7 +74,8 @@
             width: 400px;
             height: 300px;
             overflow-y: scroll;
-            background-color: darkseagreen;opacity: 50%;
+            background-color: darkseagreen;
+            opacity: 50%;
             border-radius: 5px;
             padding: 20px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -108,6 +109,17 @@
     </style>
     <script>
         // Function to send user message and get bot response
+        // function sendMessage() {
+        //     var userMessage = $('#user-input').val();
+        //
+        //     if (userMessage.trim() !== '') {
+        //         // Append user message to chat container
+        //         $('.chat-messages').append('<div class="user-message">' + userMessage + '</div>');
+        //         // Clear user input
+        //         $('#user-input').val('');
+        //     }
+        // }
+
         function sendMessage() {
             var userMessage = $('#user-input').val();
 
@@ -124,7 +136,7 @@
                         model: 'gpt-4',
                         messages: [{
                             role: 'user',
-                            content: userMessage
+                            content: "You are a person that I love and miss. What will you speak if I say: "+userMessage
                         }]
                     }),
                     success: function (response) {
@@ -145,13 +157,6 @@
             }
         }
 
-        // Handle user input on Enter key press
-        $('#user-input').keypress(function (e) {
-            if (e.which === 13) {
-                sendMessage();
-            }
-        });
-
         // Event listener to trigger chat container on click
         $(document).click(function () {
             $('.fade-in').hide();
@@ -162,24 +167,27 @@
 </head>
 
 <body>
-    <div id="video-container">
-        <video id="video-background" src="src/homeai_video.mp4" autoplay muted loop></video>
-    </div>
+<div id="video-container">
+    <video id="video-background" src="src/homeai_video.mp4" autoplay muted loop></video>
+</div>
 
-    <h1 class="fade-in">Welcome Home.</h1>
+<h1 class="fade-in">Welcome Home.</h1>
 
-    <div class="central-box">
-        <button class="game-start" onclick="$('.fade-in').hide(); $('.chat-container').css('display', 'flex');">Hey...</button>
-    </div>
+<div class="central-box">
+    <button class="game-start" onclick="$('.fade-in').hide(); $('.chat-container').css('display', 'flex');">
+    </button>
+</div>
 
-    <div class="chat-container">
-        <div class="chat-messages">
-            <!-- Chat messages will be dynamically added here -->
-        </div>
-        <div class="user-input">
-            <input type="text" id="user-input" placeholder="Start Chatting here...">
-        </div>
+<div class="chat-container">
+    <div class="chat-messages">
+        <!-- Chat messages will be dynamically added here -->
     </div>
+    <div class="user-input">
+        <input type="text" id="user-input" placeholder="Start Chatting here...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
 </body>
+
 
 </html>
